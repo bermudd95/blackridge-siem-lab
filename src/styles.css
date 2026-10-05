@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --color-background: #090b0d;
+  --color-foreground: #e6e9ed;
+  --color-card: #101418;
+  --color-card-foreground: #e6e9ed;
+  --color-popover: #161c22;
+  --color-popover-foreground: #e6e9ed;
+  --color-primary: #b8c4ce;
+  --color-primary-foreground: #090b0d;
+  --color-secondary: #161c22;
+  --color-secondary-foreground: #e6e9ed;
+  --color-muted: #161c22;
+  --color-muted-foreground: #8b939e;
+  --color-accent: #1a222b;
+  --color-accent-foreground: #e6e9ed;
+  --color-destructive: #c45c4a;
+  --color-destructive-foreground: #f6eeec;
+  --color-border: #1e262e;
+  --color-input: #1e262e;
+  --color-ring: #b8c4ce;
+  --color-surface-2: #161c22;
+  --color-subtle: #5c6570;
+  --color-critical: #c45c4a;
+  --color-high: #c4924a;
+  --color-medium: #5b8eb5;
+  --color-low: #6a8878;
+  --color-info: #7d8793;
+  --color-ok: #5d9a78;
+  --color-banner: #14181d;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius: 12px;
+
+  --shadow-panel: 0 1px 0 rgba(230, 233, 237, 0.04), 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes row-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.live-dot {
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+
+.row-enter {
+  animation: row-enter 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-document {
+    background: #fff !important;
+    color: #111 !important;
+    box-shadow: none !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+}
